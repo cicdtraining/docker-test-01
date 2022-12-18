@@ -40,6 +40,9 @@ jobs:
           REGISTRY_ALIAS: h6u2n3z8
           REPOSITORY: my-test-ecr-reg-01
           IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG2: latest
         run: |
           docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
+          docker tag $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG2
           docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+          docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG2
