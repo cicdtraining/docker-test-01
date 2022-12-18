@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - 'main'
+  workflow_dispatch:
 
 jobs:
   docker:
@@ -29,7 +30,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: fetch Package
+      - name: Fetch App Package
         run: |
           aws s3 cp s3://company-deploy-bucket/my-app-01/package.tar package.tar
           tar xvf package.tar
